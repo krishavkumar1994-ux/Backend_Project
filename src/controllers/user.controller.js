@@ -29,26 +29,26 @@ const registerUser = asyncHandler( async (req, res) => {
     }
 
     //Get uploaded files...
-    // const avatarLocalPath = req.files?.avatar?.[0]?.path
-    // const coverImageLocalPath = req.files?.coverImage?.[0]?.path
+    const avatarLocalPath = req.files?.avatar?.[0]?.path
+    const coverImageLocalPath = req.files?.coverImage?.[0]?.path
     
-    // if (!avatarLocalPath) {
-    //     throw new ApiError(400, "Avatar file is required")
-    // }
+    if (!avatarLocalPath) {
+        throw new ApiError(400, "Avatar file is required")
+    }
 
-    // //upload on cloudinary...
-    // const avatar = await uploadOnCloudinary(avatarLocalPath)
-    // const coverImage = coverImageLocalPath ? await uploadOnCloudinary(coverImageLocalPath) : null
+    //upload on cloudinary...
+    const avatar = await uploadOnCloudinary(avatarLocalPath)
+    const coverImage = coverImageLocalPath ? await uploadOnCloudinary(coverImageLocalPath) : null
     
-    // if (!avatar) {
-    //     throw new ApiError(400, "Avatar file is required")
-    // }
+    if (!avatar) {
+        throw new ApiError(400, "Avatar file is required")
+    }
 
     //create a user in MongoDB...
     const newUser = await UserModel.create({
         fullName,
-        // avatar: avatar.url, 
-        // coverImage: coverImage?.url || "",
+        avatar: avatar.url, 
+        coverImage: coverImage?.url || "",
         email,
         password,
         username: username.toLowerCase() 

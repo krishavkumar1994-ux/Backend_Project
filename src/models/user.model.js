@@ -16,13 +16,13 @@ const userSchema = Schema({
         trim: true,
         index: true
     },
-    // avatar: {
-    //     type: String,  //cloudinary url
-    //     required: true,
-    // },
-    // coverImage: {
-    //     type: String,
-    // },
+    avatar: {
+        type: String,  //cloudinary url
+        required: true,
+    },
+    coverImage: {
+        type: String,
+    },
     watchHistory: [{
 
         type: Schema.Types.ObjectId,
